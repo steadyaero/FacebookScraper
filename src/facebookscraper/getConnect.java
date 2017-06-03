@@ -24,9 +24,9 @@ public class getConnect
         try
         {
             //database address and credentials
-            String url = "jdbc:mysql://aeroaddiction.ddns.net/facebook";
-            String user = "capstone";
-            String pass = "UTTyler16";
+            String url = "jdbc:mysql://aeroaddiction.ddns.net/facebook"; //ip address or hostname / schema
+            String user = "capstone"; //db username
+            String pass = "UTTyler16"; //db password
             Class.forName ("com.mysql.jdbc.Driver");
             
             //connect to database

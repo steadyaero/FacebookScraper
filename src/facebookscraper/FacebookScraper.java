@@ -66,6 +66,16 @@ public class FacebookScraper
             System.out.println("Starting Date: "+sinceDate);
         }
         
+        String untilDate = JOptionPane.showInputDialog("Enter the Ending Date (YYYY-MM-DD) [or leave blank for today]:");
+        if(untilDate == null)
+        {
+            System.out.println("Until Current");
+        }
+        else
+        {
+            System.out.println("Ending Date: "+untilDate);
+        }
+        
         //creates sql connection object
         Connection conn = null;
         getConnect sqlCon = new getConnect();
@@ -99,7 +109,7 @@ public class FacebookScraper
             {
                 //get posts from page until date specified
                 //requires paging to see every post of a feed
-                PagableList<Post> posts = facebook.getPosts(pageName, new Reading().since(sinceDate).fields("id,created_time,message,from"));
+                PagableList<Post> posts = facebook.getPosts(pageName, new Reading().fields("id,created_time,message,from").since(sinceDate).until(untilDate));
                 Paging<Post> paging;
                 do 
                 {
@@ -235,6 +245,7 @@ public class FacebookScraper
 
         sqlCon.end(conn);
         facebook.shutdown();
+        JOptionPane.showMessageDialog(null, "Scrape Complete");
     }
     
     //function to format datetime stamp
